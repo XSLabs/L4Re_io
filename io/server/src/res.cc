@@ -265,15 +265,14 @@ l4_addr_t res_map_iomem(l4_uint64_t phys, l4_uint64_t size, bool cached)
   int all_ok = 0;
 
   // The loop goes one page beyond the requested mapping length.
-  for (l4_addr_t i = (r.phys - iomem->phys) >> Page_shift;
-       i <= ((r.size + r.phys - iomem->phys) >> Page_shift);
-       ++i)
+  l4_addr_t const end_page = (r.size + r.phys - iomem->phys) >> Page_shift;
+  for (l4_addr_t i = (r.phys - iomem->phys) >> Page_shift; i <= end_page; ++i)
     {
       // Install required mappings as soon as we are either
       //   a) at the end of loop, or
       //   b) if a page is already mapped and we don't need to upgrade the
       //      mapping.
-      if (need_map && (i == ((r.size + r.phys - iomem->phys) >> Page_shift)
+      if (need_map && (i == end_page
 	               || (iomem->pages[i] && (!cached || iomem->cached[i]))))
 	{
 	  max = i << Page_shift;
