@@ -100,6 +100,8 @@ void libpciids_name_device(char *name, int len,
 		match_device: {
 			int w = snprintf(name, len, "%s %s", vendor_p->name, device_p->name);
 			int nr = device_p->seen + 1;
+			if (w < 0 || w >= len)
+				w = len - 1;
 			device_p->seen = nr;
 			if (nr > 1)
 				snprintf(name + w, len - w, " (#%d)", nr);
