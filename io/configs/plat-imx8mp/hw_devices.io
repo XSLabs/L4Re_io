@@ -456,12 +456,14 @@ Io.hw_add_devices(function()
             compatible    = { "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc" };
             Resource.reg0 = reg_mmio(0x30b50000, 0x00010000);
             Resource.irq0 = reg_irq(0x0, 0x17, 0x4);
+            Resource.clk0 = Io.Res.clock(400000000);
          end) -- mmc@30b50000
          -- /soc@0/bus@30800000/mmc@30b60000 (3)
          mmc_30b60000 = Io.Hw.Arm_dma_device(function()
             compatible    = { "fsl,imx8mp-usdhc", "fsl,imx8mm-usdhc", "fsl,imx7d-usdhc" };
             Resource.reg0 = reg_mmio(0x30b60000, 0x00010000);
             Resource.irq0 = reg_irq(0x0, 0x18, 0x4);
+            Resource.clk0 = Io.Res.clock(400000000);
          end) -- mmc@30b60000
          -- /soc@0/bus@30800000/spi@30bb0000 (3)
          spi_30bb0000 = Io.Hw.Device(function()
