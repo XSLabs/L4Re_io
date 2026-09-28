@@ -303,8 +303,7 @@ l4_addr_t res_map_iomem(l4_uint64_t phys, l4_uint64_t size, bool cached)
       // A new mapping region is started by either
       //   a) the first unmapped page in the range, or
       //   b) the first page that needs to be upgraded to a cached mapping.
-      else if (!iomem->pages[i]
-               || (iomem->pages[i] && cached && !iomem->cached[i]))
+      else if (!iomem->pages[i] || (cached && !iomem->cached[i]))
 	{
 	  min = i << Page_shift;
 	  need_map = true;
