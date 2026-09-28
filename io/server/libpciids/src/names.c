@@ -79,7 +79,6 @@ void libpciids_name_device(char *name, int len,
 
 	/* Couldn't find either the vendor nor the device */
 	snprintf(name, len, "PCI device %04x:%04x", vendor, device);
-        name[len - 1] = 0;
 	return;
 
 	match_vendor: {
@@ -95,7 +94,6 @@ void libpciids_name_device(char *name, int len,
 
 		/* Ok, found the vendor, but unknown device */
 		snprintf(name, len, "PCI device %04x:%04x (%s)", vendor, device, vendor_p->name);
-                name[len - 1] = 0;
 		return;
 
 		/* Full match */
@@ -105,7 +103,6 @@ void libpciids_name_device(char *name, int len,
 			device_p->seen = nr;
 			if (nr > 1)
 				snprintf(name + w, len - w, " (#%d)", nr);
-                        name[len - 1] = 0;
 		}
 	}
 }
