@@ -8,8 +8,6 @@ This package includes the following components:
 
 * io - main server and resource manager
 * libvbus - IO client interface and definitions
-* libio-direct - convenience functions for requesting hardware resources
-                 directly from the kernel/sigma0
 * libio-io - convenience functions for requesting hardware resources from IO
 
 # Documentation
